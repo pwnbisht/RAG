@@ -1,0 +1,48 @@
+app/
+│
+├── api/
+│   └── v1/
+│       ├── users/
+│       │   ├── auth/
+│       │   │   └── auth.py
+│       │   └── documents/
+│       │       └── documents.py
+│       └── router.py
+│
+├── controllers/
+│   └── users/
+│       └── auth.py
+│
+├── core/
+│   ├── config.py
+│   ├── exceptions.py
+│   └── factory/
+│       └── userfactory.py
+│
+├── db/
+│   ├── __init__.py
+│   ├── base.py
+│   ├── init_db.py
+│   └── models/
+│       └── __init__.py
+│       └── users.py
+│
+├── repositories/
+│   └── users/
+│       ├── tokens.py
+│       └── users.py
+│
+├── schemas/
+│   └── users/
+│       ├── users.py
+│       └── tokens.py
+│
+├── services/
+│   └── auth/
+│       └── auth.py
+│
+├── utils/
+│   └── security.py
+│
+└── __init__.py
+└── main.py
