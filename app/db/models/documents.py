@@ -24,7 +24,6 @@ class Document(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     file_name = Column(String, nullable=False)
-    content = Column(String, nullable=False)
     chunks = relationship("DocumentChunk", backref="document")
     user_id = Column(Integer, ForeignKey("users.id"), index=True, nullable=False)
     user = relationship("User", back_populates="documents")

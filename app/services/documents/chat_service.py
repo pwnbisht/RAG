@@ -8,7 +8,17 @@ from .llm_service import LLMService
 
 logger = logging.getLogger(__name__)
 
+
 class ChatService:
+    """
+    Service for handling document chat functionality.
+
+    Args:
+        document_repo (DocumentRepository): The document repository instance.
+        embedding_service (EmbeddingService): The embedding service instance.
+        llm_service (LLMService): The LLM service instance.
+    """
+
     def __init__(
         self,
         document_repo: DocumentRepository,
@@ -25,37 +35,47 @@ class ChatService:
         message: str,
         session: AsyncSession
     ) -> dict:
+        """
+        Process a chat message.
+
+        Finds similar document sections to the given message
+        and uses the LLM model to generate a response.
+
+        Args:
+            document_id (int): The document id.
+            message (str): The message.
+            session (AsyncSession): The database session.
+
+        Returns:
+            dict: A response dict with the response and sources.
+        """
         query_embedding = await self.embedding_service.generate_embedding(message)
         
-        # Find similar document sections
-        context = await self.document_repo.find_similar_content(
+        chunks = await self.document_repo.find_similar_content(
             document_id=document_id,
             query_embedding=query_embedding,
             threshold=0.7,
-            limit=3,
+            limit=5,
             session=session
-        )
-        
-        logger.info(f"Context: {context}")
-        
-        if not context:
+        )        
+        if not chunks:
             return {
                 "response": "I couldn’t find any relevant information in the document.",
                 "sources": []
             }
         
-        context = "\n\n".join(context)
+        context = "\n\n".join(chunks)
+        sources = [chunk[:50] + "..." for chunk in chunks]
         
         try:
             response = await self.llm_service.generate_response(query=message, context=context)
         except Exception as e:
+            logger.error(f"Error processing chat: {e}")
             return {
                 "response": "Sorry, I encountered an error processing your request.",
                 "sources": []
             }
-        
-        # Return response and sources
         return {
             "response": response,
-            "sources": context
+            "sources": sources
         }

@@ -2,8 +2,18 @@ from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from app.core.config import get_settings
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class LLMService:
+    """
+    Service to interact with the LLM model.
+
+    It uses the langchain library to interact with the LLM model.
+    The service provides a single method to generate a response based on a given query and context.
+    """
     def __init__(self):
         settings = get_settings()
         self.llm = ChatOllama(
@@ -15,7 +25,7 @@ class LLMService:
         
         self.prompt_template = ChatPromptTemplate.from_template(
             """Use the following context to answer the question. 
-            If you don't know the answer, say you don't know.
+            If you don't know the answer, say you don't know. try to give a short answer.
             
             Context: {context}
             
@@ -32,6 +42,14 @@ class LLMService:
     ) -> str:
         """
         Generate a response using Llama model
+
+        Args:
+            query (str): The question to answer.
+            context (str): The context to use when generating the response.
+            custom_prompt (str, optional): The custom prompt to use when generating the response. Defaults to None.
+
+        Returns:
+            str: The generated response.
         """
         try:
             # Use custom prompt if provided
@@ -47,4 +65,5 @@ class LLMService:
             })
             
         except Exception as e:
+            logger.error(f"Exception : {e}")
             return "Sorry, I encountered an error processing your request."

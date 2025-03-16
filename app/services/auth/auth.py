@@ -75,6 +75,22 @@ def decodeJWT(jwtoken: str):
 #             )
 
 class JWTBearer(HTTPBearer):
+    """
+    Verify and decode JWT token from cookie.
+
+    This class extends the default HTTPBearer class to verify and decode
+    JWT tokens from the "_at" cookie. The decoded payload is returned.
+
+    Args:
+        request (Request): The request object.
+
+    Returns:
+        dict: The decoded JWT payload.
+
+    Raises:
+        HTTPException: If the token is invalid or expired.
+    """
+
     async def __call__(self, request: Request, db: AsyncSession = Depends(get_db)):
         # Get token from cookie
         access_token = request.cookies.get("_at")

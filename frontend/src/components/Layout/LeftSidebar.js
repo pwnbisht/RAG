@@ -61,39 +61,7 @@ const LeftSidebar = ({ toogleActive }) => {
                 <i className="material-symbols-outlined">dashboard</i>
                 <span className="title">Dashboard</span>
               </Accordion.Header>
-              <Accordion.Body>
-                <ul className="sub-menu">
-                  <li className="menu-item">
-                    <Link
-                      href="/dashboard/ecommerce/"
-                      className={`menu-link ${
-                        pathname === "/dashboard/ecommerce/" ? "active" : ""
-                      }`}
-                    >
-                      eCommerce
-                    </Link>
-                  </li>
-                </ul>
-              </Accordion.Body>
             </Accordion.Item>
-
-            <div className="menu-title small text-uppercase">
-              <span className="menu-title-text">APPS</span>
-            </div>
-
-            <div className="menu-item">
-              <Link
-                href="/apps/to-do-list/"
-                className={`menu-link ${
-                  pathname === "/apps/to-do-list/" ? "active" : ""
-                }`}
-              >
-                <i className="material-symbols-outlined">
-                  format_list_bulleted
-                </i>
-                <span className="title">To Do List</span>
-              </Link>
-            </div>
 
             <div
               className="menu-item"
