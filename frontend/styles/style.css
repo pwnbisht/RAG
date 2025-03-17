@@ -17909,6 +17909,16 @@ Swiper Slider Style
   margin-bottom: 5px;
   display: inline-block;
 }
+
+.chat-details li ul {
+  border-radius: 0px 15px 15px 15px;
+  background-color: #F5F6FA;
+  margin-bottom: 0;
+  padding: 15px 30px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
 .chat-details li .dropdown.action-opt {
   opacity: 0;
   transition: all ease 0.5s;
@@ -19417,6 +19427,9 @@ Swiper Slider Style
   color: #8695AA;
 }
 .dark .chat-details li p {
+  background-color: #0A0E19;
+}
+.dark .chat-details li ul {
   background-color: #0A0E19;
 }
 .dark .chat-details li.own-chat p {

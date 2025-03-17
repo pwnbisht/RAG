@@ -9,6 +9,8 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
+import ReactMarkdown from "react-markdown";
+
 
 const DocumentChat = ({ documentId }) => {
   const [messages, setMessages] = useState([]);
@@ -29,7 +31,6 @@ const DocumentChat = ({ documentId }) => {
     setInput("");
     setIsLoading(true);
 
-    // Send message to backend API
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}docs/${documentId}/chat`, {
         method: "POST",
@@ -107,7 +108,11 @@ const DocumentChat = ({ documentId }) => {
                           </Dropdown.Menu>
                         </Dropdown>
                       )}
-                      <p className="mb-0">{msg.text}</p>
+                      {msg.sender === "bot" ? (
+                        <ReactMarkdown>{msg.text}</ReactMarkdown>
+                      ) : (
+                        <p>{msg.text}</p>
+                      )}
                       {msg.sender !== "user" && (
                         <Dropdown className="action-opt ms-2">
                           <Dropdown.Toggle
