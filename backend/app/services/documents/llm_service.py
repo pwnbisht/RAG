@@ -30,8 +30,7 @@ class LLMService:
                 2. If the context does not provide enough information, respond with "I don't know" without any additional commentary.
                 3. Keep your answer short and to the point.
                 4. Do not include any extra text, explanations, or filler content beyond the answer.
-                5. If the question contains multiple parts and the context allows, you may use bullet points or numbered lists for clarity
-                or you can simply respond with the Markdown text.
+                5. If the question contains multiple parts and the context allows, you may use bullet points or numbered lists for clarity.
 
                 Context: {context}
 
