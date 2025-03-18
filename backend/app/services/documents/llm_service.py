@@ -57,7 +57,6 @@ class LLMService:
             str: The generated response.
         """
         try:
-            # Use custom prompt if provided
             prompt = self.prompt_template
             if custom_prompt:
                 prompt = ChatPromptTemplate.from_template(custom_prompt)

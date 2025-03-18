@@ -42,7 +42,6 @@ def get_llm_service() -> LLMService:
     Returns:
         LLMService: The LLM service instance.
     """
-    # Create and return an instance of LLMService
     return LLMService()
 
 
@@ -81,7 +80,6 @@ def get_chat_services(
     Returns:
         ChatService: The chat service instance.
     """
-    # Create and return an instance of ChatService
     return ChatService(document_repo, embedding_service, llm_service)
 
 
