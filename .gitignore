@@ -79,7 +79,7 @@ target/
 celerybeat-schedule
 
 # dotenv
-.env
+
 
 # virtualenv
 venv/
@@ -93,7 +93,7 @@ ENV/
 .settings
 .classpath
 .idea
-.qodo
+.qodo/
 alembic.ini
 alembic
 ######################
@@ -185,3 +185,4 @@ dist/
 *slicer-temp*
 gwt-unitCache
 .sass-cache/
+.qodo

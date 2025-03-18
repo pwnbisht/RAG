@@ -21135,3 +21135,21 @@ Swiper Slider Style
   }
 }
 /* Min width 1400px to Max width 1799px *//*# sourceMappingURL=style.css.map */
+
+.bot-msg {
+  border-radius: 0 15px 15px 15px;
+  background-color: #f5f6fa;
+  margin-bottom: 5px;
+  display: inline-block;
+  padding: 15px 20px;
+}
+
+.bot-msg h1{
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.bot-msg h2{
+  font-size: 14px;
+  font-weight: 400;
+}

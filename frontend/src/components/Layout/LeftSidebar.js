@@ -31,7 +31,7 @@ const LeftSidebar = ({ toogleActive }) => {
       <div className="sidebar-area">
         <div className="logo position-relative">
           <Link
-            href="/dashboard/ecommerce/"
+            href="#"
             className="d-block text-decoration-none position-relative"
           >
             <Image

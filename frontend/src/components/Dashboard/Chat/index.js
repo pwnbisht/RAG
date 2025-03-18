@@ -109,7 +109,9 @@ const DocumentChat = ({ documentId }) => {
                         </Dropdown>
                       )}
                       {msg.sender === "bot" ? (
-                        <ReactMarkdown>{msg.text}</ReactMarkdown>
+                        <div className="bot-msg">
+                          <ReactMarkdown>{msg.text}</ReactMarkdown>
+                        </div>
                       ) : (
                         <p>{msg.text}</p>
                       )}

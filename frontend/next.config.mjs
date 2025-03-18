@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // For Static Export
-  // output: 'export',
+  output: 'standalone',
   trailingSlash: true,
   images: {
     unoptimized: true,
