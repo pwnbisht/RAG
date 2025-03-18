@@ -16,7 +16,7 @@ This project is a **Retrieval-Augmented Generation (RAG) System**. The backend o
 - [System Requirements](#-system-requirements)
 - [Installation](#-installation)
 - [Backend Architecture Pattern](#-backend-architecture-pattern)
-- [Project Structure](#-project-structure)
+- [Project Structure](#-project-structure-backend)
 - [Usage](#-usage)
 - [Future Enhancements](#-future-enhancements)
 - [Contributing](#-contributing)
@@ -182,7 +182,7 @@ If you’d rather set it up manually, follow these steps:
 - 🚀 **Scalability**: Add new features without breaking existing flow
 - 🔧 **Maintainability**: Isolate changes to specific layers
 
-## 📂 Updated Project Structure (Backend)
+## 📂 Project Structure (Backend)
 ```bash
    📦 Root
    |
