@@ -246,6 +246,14 @@ If you’d rather set it up manually, follow these steps:
    │  │  │     ├─ documentservice.py
    │  │  │     ├─ embeddings.py
    │  │  │     └─ llm_service.py
+   │  │  ├─ tests
+   │  │  │  ├─ __init__.py
+   │  │  │  ├─ documents
+   │  │  │  │  ├─ __init__.py
+   │  │  │  │  └─ test_documents.py
+   │  │  │  └─ users
+   │  │  │     ├─ test_auth.py
+   │  │  │     └─ __init__.py
    │  │  └─ utils
    │  │     ├─ __init__.py
    │  │     └─ security.py
