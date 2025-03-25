@@ -12,7 +12,7 @@ class AuthResponse(JSONResponse):
     def set_auth_cookies(self, tokens: dict):
         self.set_cookie(
             key="_at",
-            value=tokens["access_token"],
+            value=tokens.access_token,
             httponly=True,
             secure=False,
             samesite="lax",
@@ -22,7 +22,7 @@ class AuthResponse(JSONResponse):
         )
         self.set_cookie(
             key="_rt",
-            value=tokens["refresh_token"],
+            value=tokens.refresh_token,
             httponly=True,
             secure=False,
             samesite="lax",

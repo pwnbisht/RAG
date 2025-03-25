@@ -1,3 +1,4 @@
+from typing import List
 from langchain_ollama import OllamaEmbeddings
 
 from app.core.config import get_settings
@@ -36,7 +37,7 @@ class EmbeddingService:
             str: The truncated text.
         """
         return text if len(text) <= max_length else text[:max_length]
-
+    
     async def generate_embedding(self, text: str) -> list[float]:
         """
         Generate an embedding for the given text using the Ollama server.
@@ -49,3 +50,7 @@ class EmbeddingService:
         """
         truncated_text = self.truncate_text(text)
         return await self.embeddings.aembed_query(truncated_text)
+
+    async def generate_embeddings(self, texts: List[str]) -> List[List[float]]:
+        truncated_texts = [self.truncate_text(text) for text in texts]
+        return await self.embeddings.aembed_documents(truncated_texts)

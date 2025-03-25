@@ -6,6 +6,9 @@ import aiofiles
 import aiofiles.os as aios
 from typing import List
 import logging
+
+import concurrent.futures
+
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import UploadFile, BackgroundTasks
 
@@ -368,24 +371,37 @@ class DocumentService:
                 
                 document_id = document.id
                 
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    cleaned_chunks = list(executor.map(ContentCleaner.clean, chunks))
+                
+                embeddings = await self.embedding_service.generate_embeddings(cleaned_chunks)
+                
+                chunk_data = [{
+                    "document_id": document_id,
+                    "content": chunk,
+                    "embedding": embedding
+                } for chunk, embedding in zip(cleaned_chunks, embeddings)]
+                
+                await self.document_repo.bulk_create_chunks(chunk_data, session)
+                
                 # Process each chunk and store in DocumentChunk table
-                for chunk_content in chunks:
+                # for chunk_content in chunks:
                     
-                    # Clean and generate embedding for each chunk
-                    cleaned_chunk = await loop.run_in_executor(
-                        None,
-                        ContentCleaner.clean,
-                        chunk_content
-                    )
+                #     # Clean and generate embedding for each chunk
+                #     cleaned_chunk = await loop.run_in_executor(
+                #         None,
+                #         ContentCleaner.clean,
+                #         chunk_content
+                #     )
                     
-                    embedding = await self.embedding_service.generate_embedding(cleaned_chunk)
+                #     embedding = await self.embedding_service.generate_embeddings(cleaned_chunk)
                     
-                    chunk_data = {
-                        "document_id": document_id,
-                        "content": cleaned_chunk,
-                        "embedding": embedding
-                    }
-                    await self.document_repo.create_chunk(chunk_data, session)
+                #     chunk_data = {
+                #         "document_id": document_id,
+                #         "content": cleaned_chunk,
+                #         "embedding": embedding
+                #     }
+                    # await self.document_repo.create_chunk(chunk_data, session)
                 
                 # Update document status to SUCCESS
                 document.status = StatusEnum.SUCCESS

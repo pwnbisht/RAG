@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import get_settings
 from app.db.models.users import TokenTable
+from app.schemas.users.users import TokenSchema
 
 
 settings = get_settings()
@@ -109,7 +110,4 @@ async def create_tokens(
     await db.merge(token_db)
     await db.commit()
     
-    return {
-        "access_token": access,
-        "refresh_token": refresh,
-    }
+    return TokenSchema(access_token=access, refresh_token=refresh)

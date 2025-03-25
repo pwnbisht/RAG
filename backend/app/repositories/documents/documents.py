@@ -1,3 +1,4 @@
+from typing import List
 from sqlalchemy.future import select
 from sqlalchemy.orm import load_only
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -43,6 +44,11 @@ class DocumentRepository:
         await session.commit()
         await session.refresh(chunk)
         return chunk
+
+    async def bulk_create_chunks(self, chunks: List[dict], session: AsyncSession):
+        session.add_all([DocumentChunk(**chunk) for chunk in chunks])
+        await session.commit()
+
 
     async def get_documents_by_user(
         self, 

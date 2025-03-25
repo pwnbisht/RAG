@@ -1,8 +1,9 @@
 from fastapi import UploadFile, BackgroundTasks
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.services.documents.documentservice import DocumentService
+
 from app.services.documents.chat_service import ChatService
 from app.schemas.documents.document_schemas import DocumentOut
+from app.services.documents.documentservice import DocumentService
 
 
 class DocumentController:

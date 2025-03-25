@@ -1,5 +1,5 @@
 import datetime
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 class UserCreate(BaseModel):
@@ -13,9 +13,9 @@ class UserCreate(BaseModel):
         password (str): The password for the user
         account.
     """
-    username: str
+    username: str = Field(..., min_length=1, description="Username cannot be empty")
     email: EmailStr
-    password: str
+    password: str = Field(..., min_length=8, description="Password must be at least 8 characters long")
 
 
 class LoginUser(BaseModel):

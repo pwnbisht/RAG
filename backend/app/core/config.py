@@ -34,7 +34,11 @@ class Settings(BaseSettings):
     # models
     ollama_url: str
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore"
+    )
 
 class CsrfSettings(BaseSettings):
     CSRF_SECRET_KEY: str
