@@ -1,4 +1,4 @@
-FROM postgres:15
+FROM postgres:15.12-alpine3.21
 
 RUN apt-get update && apt-get install -y \
     git \
