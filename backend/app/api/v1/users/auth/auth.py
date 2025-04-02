@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, Request
 # from fastapi.security import OAuth2PasswordRequestForm
 from app.core.factory.userfactory import get_auth_controller
 from app.core.exceptions import ForbiddenException
-from app.controllers.users.auth import AuthController
+from app.controllers.users.auth_controller import AuthController
 from app.schemas.users.users import UserCreate, TokenSchema, LoginUser
-from app.services.auth.auth import jwt_bearer
+from app.services.auth.auth_services import jwt_bearer
 
 from .auth_response import AuthResponse, LogoutResponse
 
