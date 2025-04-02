@@ -6,10 +6,10 @@ from fastapi import Depends
 from fastapi import File
 from fastapi import UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.controllers.documents.documents import DocumentController
+from app.controllers.documents.document_controller import DocumentController
 from app.db.base import get_db
 from app.core.factory.documentfactory import get_document_controller
-from app.services.auth.auth import jwt_bearer
+from app.services.auth.auth_services import jwt_bearer
 from app.schemas.documents.document_schemas import DocumentOut, ChatResponse, ChatRequest
 
 

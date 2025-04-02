@@ -8,7 +8,7 @@ from app.api.v1.users.documents.documents import get_documents
 from app.main import app
 from app.schemas.documents.document_schemas import DocumentOut
 from app.api.v1.users.documents.documents import upload_document
-from app.controllers.documents.documents import DocumentController
+from app.controllers.documents.document_controller import DocumentController
 from app.services.documents.documentservice import DocumentService
 
 

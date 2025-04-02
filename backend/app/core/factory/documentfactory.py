@@ -4,7 +4,7 @@ from app.services.documents.documentservice import DocumentService, FileService
 from app.services.documents.embeddings import EmbeddingService
 from app.services.documents.chat_service import ChatService
 from app.services.documents.llm_service import LLMService
-from app.controllers.documents.documents import DocumentController
+from app.controllers.documents.document_controller import DocumentController
 from app.repositories.documents.documents import DocumentRepository
 
 

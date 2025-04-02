@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from app.api.v1.users.auth.auth import signup, login, logout
 from app.api.v1.users.auth.auth_response import AuthResponse, LogoutResponse
-from app.controllers.users.auth import AuthController
+from app.controllers.users.auth_controller import AuthController
 from app.core.exceptions import ForbiddenException
 from app.core.exceptions import BadRequestException
 from app.main import app
@@ -206,16 +206,16 @@ async def test_valid_refresh_token_returns_new_tokens(mocker: pytest_mock.MockFi
     settings_mock.JWT_REFRESH_SECRET_KEY = "test_secret"
     settings_mock.algorithm = "HS256"
     
-    mocker.patch("app.controllers.users.auth.get_settings", return_value=settings_mock)
+    mocker.patch("app.controllers.users.auth_controller.get_settings", return_value=settings_mock)
 
     payload = {"sub": "1"}
-    mocker.patch("app.controllers.users.auth.jwt.decode", return_value=payload)
+    mocker.patch("app.controllers.users.auth_controller.jwt.decode", return_value=payload)
 
     token_record = mocker.MagicMock()
     token_repo.get_by_refresh_token.return_value = token_record
 
     expected_tokens = TokenSchema(access_token="new_access", refresh_token="new_refresh")
-    mocker.patch("app.controllers.users.auth.create_tokens", return_value=expected_tokens)
+    mocker.patch("app.controllers.users.auth_controller.create_tokens", return_value=expected_tokens)
 
     result = await auth_controller.refresh_tokens("valid_refresh_token")
 
@@ -238,10 +238,10 @@ async def test_refresh_token_with_missing_sub_raises_forbidden(mocker: pytest_mo
     settings_mock = mocker.MagicMock()
     settings_mock.JWT_REFRESH_SECRET_KEY = "test_secret"
     settings_mock.algorithm = "HS256"
-    mocker.patch("app.controllers.users.auth.get_settings", return_value=settings_mock)
+    mocker.patch("app.controllers.users.auth_controller.get_settings", return_value=settings_mock)
 
     payload = {}
-    mocker.patch("app.controllers.users.auth.jwt.decode", return_value=payload)
+    mocker.patch("app.controllers.users.auth_controller.jwt.decode", return_value=payload)
 
     # print("invalid refresh tokennnnnnssssssssssssssssssssssssssssssssssssssss")
     with pytest.raises(ForbiddenException) as exc_info:
