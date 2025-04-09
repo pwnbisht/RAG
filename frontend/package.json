@@ -15,7 +15,7 @@
     "bootstrap": "^5.3.3",
     "echarts": "^5.5.1",
     "formik": "^2.4.6",
-    "jose": "^6.0.8",
+    "jose": "^6.0.10",
     "next": "^15.0.2",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
